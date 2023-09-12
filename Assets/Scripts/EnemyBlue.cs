@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
-public class EnemyBlue : MonoBehaviour
+public class EnemyBlue : Deletable
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] GameManager manager;
-
     void Start()
     {
-
+        this.delete_zone = DeleteZone.Bottom;
     }
 
-    void Update()
+    public override void Update()
     {
         transform.position -= new Vector3(0, speed, 0) * Time.deltaTime;
+        base.Update();
+    }
+
+    private void OnDestroy()
+    {
+        if(markForDelete)
+        {
+            GameManager.instance.IncreaseScore(-10);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,8 +32,5 @@ public class EnemyBlue : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player")) { GameManager.instance.InitiateGameOver(); }
         else { GameManager.instance.IncreaseScore(10); } // Enemy destroyed
-
-        
-        
     }
 }

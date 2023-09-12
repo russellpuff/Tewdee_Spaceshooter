@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser : Deletable
 {
     [SerializeField] float laserSpeed = 1.0f;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        this.delete_zone = DeleteZone.Top;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         transform.position += new Vector3(0, laserSpeed, 0) * Time.deltaTime;
+        base.Update();
     }
 }

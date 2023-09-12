@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1938434079546896305}
   - component: {fileID: 1616693235443275242}
   - component: {fileID: -4447747743528776219}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyBlue
-  m_TagString: Untagged
+  m_TagString: Deletable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
