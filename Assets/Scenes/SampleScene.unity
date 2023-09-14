@@ -720,9 +720,9 @@ MonoBehaviour:
   m_fontSize: 98
   m_fontSizeBase: 98
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 32
+  m_fontSizeMax: 98
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -796,7 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e80e09db6103646b829360d9cedf99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 2
+  spawnRateBlue: 2
+  spawnRateGreen: 3
   blueEnemy: {fileID: 923425322964942080, guid: 5c06f605ab88c644f84540e7b744d21e, type: 3}
   greenEnemy: {fileID: 146867634144566807, guid: c7b086de39e919c4abb8fbe48c2b604c, type: 3}
 --- !u!4 &1492702019

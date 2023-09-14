@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class EnemyBlue : Deletable
@@ -19,18 +16,6 @@ public class EnemyBlue : Deletable
 
     private void OnDestroy()
     {
-        if(markForDelete)
-        {
-            GameManager.instance.IncreaseScore(-10);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
-        Destroy(collision.gameObject);
-
-        if (collision.gameObject.CompareTag("Player")) { GameManager.instance.InitiateGameOver(); }
-        else { GameManager.instance.IncreaseScore(10); } // Enemy destroyed
+        if(markForDelete) { GameManager.instance.IncreaseScore(-10); }
     }
 }

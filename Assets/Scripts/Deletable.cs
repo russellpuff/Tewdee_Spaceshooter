@@ -1,8 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// GameObjects that are automatically deleted when they exit the screen. 
+// DeleteZone determines where they must be to be deleted, as some objects spawn off screen. 
+// markForDelete allows some children of this class to determine whether they are about to be deleted. This is mostly used to deduct points for failing to kill an enemy.
 public abstract class Deletable : MonoBehaviour
 {
     protected DeleteZone delete_zone;
@@ -29,5 +31,15 @@ public abstract class Deletable : MonoBehaviour
         deleteZoneThresholds.TryGetValue(delete_zone, out var conditonal); // Dynamically get threshold checking conditional from dictionary.
         markForDelete = conditonal.Invoke(transform);
         if (markForDelete) { Destroy(gameObject); }
+    }
+
+    // All deletable objects have collission.
+    // The scene is set up so certain things can't collide with each other, and this handles the remaining cases.
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+        Destroy(collision.gameObject);
+        if (collision.gameObject.CompareTag("Player")) { GameManager.instance.InitiateGameOver(); }
+        else { GameManager.instance.IncreaseScore(10); } // Enemy destroyed
     }
 }

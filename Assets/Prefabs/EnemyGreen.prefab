@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSpawn: 0
   laser: {fileID: 6822391482830272901, guid: 058ec18abfec06c49b3be4f7bc50c4fb, type: 3}
-  speed: 10
+  speed: 8

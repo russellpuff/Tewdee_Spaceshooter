@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGreen : Deletable
@@ -8,7 +6,7 @@ public class EnemyGreen : Deletable
     private bool laserFired = false;
     private float randomFireLocation;
     [SerializeField] GameObject laser;
-    [SerializeField] float speed = 10f;
+    [SerializeField] float speed = 8f;
     void Start()
     {
         delete_zone = leftSpawn ? DeleteZone.Right : DeleteZone.Left;
@@ -17,14 +15,19 @@ public class EnemyGreen : Deletable
 
     public override void Update()
     {
-        if (!laserFired)
+        if (!laserFired && ((leftSpawn && transform.position.x > randomFireLocation) ||
+            (!leftSpawn && transform.position.x < randomFireLocation)))
         {
-            if ((leftSpawn && transform.position.x > randomFireLocation) ||
-            (!leftSpawn && transform.position.x < randomFireLocation))
-            { Instantiate(laser, transform.position, Quaternion.identity); laserFired = true; }
+            Instantiate(laser, transform.position, Quaternion.identity);
+            laserFired = true;
         }
 
         transform.position +=  new Vector3(speed * (leftSpawn ? 1 : -1), 0, 0) * Time.deltaTime;
         base.Update();
+    }
+
+    private void OnDestroy()
+    {
+        if (markForDelete) { GameManager.instance.IncreaseScore(-10); }
     }
 }
