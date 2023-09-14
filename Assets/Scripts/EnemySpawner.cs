@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
         // Prepare spawn mechanics. The methods will reinvoke themselves based on the point spawn multiplier. 
         Invoke(nameof(SpawnEnemyBlue), 1);
         Invoke(nameof(SpawnEnemyGreen), 2);
+        // InvokeRepeating("SpawnEnemy", 0, spawnRate); 
     }
 
     // GameManager tracks a multiplier that makes enemies spawn faster the more points you have. 

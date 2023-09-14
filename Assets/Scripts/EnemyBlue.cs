@@ -18,4 +18,16 @@ public class EnemyBlue : Deletable
     {
         if(markForDelete) { GameManager.instance.IncreaseScore(-10); }
     }
+
+    // From tutorial.
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+        Destroy(collision.gameObject);
+
+        if (collision.gameObject.CompareTag("Player")) { GameManager.instance.InitiateGameOver(); }
+        else { GameManager.instance.IncreaseScore(10); } // Enemy destroyed
+    }
+     */
 }
